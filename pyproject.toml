@@ -7,8 +7,16 @@ authors = [
     { name = "nunkesser", email = "robin.nunkesser@hshl.de" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "imodels>=3.0.1",
+    "numpy>=2.5.3",
+    "scikit-learn>=1.9.1",
+    "scoredrulesets",
+]
 
 [build-system]
 requires = ["uv_build>=0.11.11,<0.12.0"]
 build-backend = "uv_build"
+
+[tool.uv.sources]
+scoredrulesets = { path = "../pypi-scoredrulesets" }

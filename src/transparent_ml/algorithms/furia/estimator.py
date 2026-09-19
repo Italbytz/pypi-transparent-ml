@@ -3,12 +3,16 @@ from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import unique_labels
 
+from transparent_ml.core.base import BaseInterpretableModel
+from transparent_ml.algorithms.furia.rule import FuzzyRule
+from transparent_ml.algorithms.furia.antecedent import NumericAntecedent
 from transparent_ml.algorithms.furia.heuristics import foil_info_gain, find_best_numeric_split
 
-class FuriaClassifier(BaseEstimator, ClassifierMixin):
+
+class FuriaClassifier(BaseInterpretableModel):
     """
-    Native Python implementation of the Fuzzy Unordered Rule Induction Algorithm (FURIA).
-    Translated via AI from the original WEKA Java implementation.
+    Fuzzy Unordered Rule Induction Algorithm (FURIA) Classifier.
+    Translated from Weka/KEEL Java implementation.
     
     Parameters
     ----------

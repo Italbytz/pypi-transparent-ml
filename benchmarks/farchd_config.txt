@@ -1,0 +1,14 @@
+algorithm = FARC-HD
+inputData = "synthetic_5000.dat" "synthetic_5000.dat" "synthetic_5000.dat"
+outputData = "./train_out.dat" "./test_out.dat" "./db.txt" "./rb.txt"
+seed = 1
+Num_of_Labels = 3
+Support = 0.05
+Confidence = 0.8
+Depth_Max = 3
+K_parameter = 2
+MAX_Evals = 1000
+Pop_Size = 10
+alpha = 0.02
+Bits_Gen = 30
+typeInference = 0
