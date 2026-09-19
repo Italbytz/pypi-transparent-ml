@@ -4,17 +4,21 @@ import numpy as np
 
 valid_models = ['FURIA', 'PART', 'RuleFit', 'RuleGP', 'FARC-HD']
 
-# Values derived from benchmark run
+# Values derived from 5-dataset benchmark run (5-fold CV)
 f1_matrix = np.array([
-    [94.3, 92.4, 95.0, 92.2, 95.6], # Breast Cancer (FARC-HD performs well)
-    [91.6, 81.8, 93.2, 84.6, 0.0],  # Leukemia (FARC-HD timeout)
-    [65.2, 68.9, 76.6, 83.9, 0.0]   # Colon (FARC-HD timeout)
+    [94.4, 92.4, 95.2, 92.7, 95.6], # Breast Cancer (D=30)
+    [74.8, 68.9, 73.3, 78.9, 0.0],  # Colon (D=2,000, FARC-HD timeout)
+    [48.4, 54.0, 49.7, 52.2, 0.0],  # CNS (D=7,129, FARC-HD timeout)
+    [94.9, 81.8, 94.9, 87.8, 0.0],  # Leukemia (D=7,129, FARC-HD timeout)
+    [81.0, 76.1, 90.1, 87.2, 0.0]   # Prostate (D=12,600, FARC-HD timeout)
 ])
 
 rules_matrix = np.array([
-    [10.8, 4.2, 55.0, 2.0, 45.0],   # Breast Cancer
-    [3.2, 2.4, 7155.6, 2.2, 0.0],   # Leukemia
-    [3.0, 2.4, 2026.4, 2.6, 0.0]    # Colon
+    [11.0, 4.2, 57.8, 2.6, 45.0],   # Breast Cancer
+    [3.2, 2.4, 2029.4, 3.0, 0.0],   # Colon
+    [1.8, 2.0, 7160.2, 3.2, 0.0],   # CNS
+    [3.4, 2.4, 7158.6, 2.6, 0.0],   # Leukemia
+    [4.8, 2.2, 12626.2, 2.6, 0.0]   # Prostate
 ])
 
 avg_f1 = np.mean(f1_matrix, axis=0)

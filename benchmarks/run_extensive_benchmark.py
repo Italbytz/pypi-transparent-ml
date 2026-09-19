@@ -46,27 +46,37 @@ def fetch_omics_dataset(name, version=1):
 def load_datasets():
     datasets = {}
     
-    # 1. Breast Cancer (Baseline Bio)
+    # 1. Breast Cancer (Baseline Bio, D=30)
     data = load_breast_cancer()
     datasets['BreastCancer'] = (data.data, data.target, data.feature_names)
     
-    # 2. Leukemia (High-Dim Microarray)
-    X, y, fnames = fetch_omics_dataset('leukemia')
-    if X is not None:
-        datasets['Leukemia'] = (X, y, fnames)
-        
-    # 3. Colon Cancer (High-Dim Microarray)
+    # 2. Colon Cancer (High-Dim Microarray, D=2,000)
     X, y, fnames = fetch_omics_dataset('colon')
     if X is not None:
         datasets['Colon'] = (X, y, fnames)
+
+    # 3. CNS Embryonal Tumors (High-Dim Microarray, D=7,129)
+    X, y, fnames = fetch_omics_dataset('CNS')
+    if X is not None:
+        datasets['CNS'] = (X, y, fnames)
+        
+    # 4. Leukemia (High-Dim Microarray, D=7,129)
+    X, y, fnames = fetch_omics_dataset('leukemia')
+    if X is not None:
+        datasets['Leukemia'] = (X, y, fnames)
+
+    # 5. Prostate Cancer (High-Dim Microarray, D=12,600)
+    X, y, fnames = fetch_omics_dataset('prostate')
+    if X is not None:
+        datasets['Prostate'] = (X, y, fnames)
         
     return datasets
 
 def get_models():
     try:
         from scoredrulesets.estimators.rulegp import RuleGPClassifier
-        # Keep config minimal to finish in reasonable time, but enough to learn rules
-        rulegp_model = RuleGPClassifier(population_size=50, generations=50)
+        # Keep config balanced for reproducible 5-fold CV across microarrays
+        rulegp_model = RuleGPClassifier(population_size=50, max_generations=50, random_state=42)
     except ImportError:
         print("WARNING: scoredrulesets not found in PYTHONPATH. RuleGP will fail.")
         rulegp_model = None
@@ -169,16 +179,17 @@ def run_benchmark():
         
     plt.xlabel('Model Complexity (Average Number of Rules)')
     plt.ylabel('Predictive Quality (Average Macro F1 %)')
-    plt.title('Pareto Trade-off: Accuracy vs. Interpretability')
+    plt.title('Pareto Trade-off: Accuracy vs. Interpretability on Omics Datasets')
     plt.grid(True, linestyle='--', alpha=0.7)
+    plt.xscale('symlog')
     plt.legend()
     
     plot_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../../../articles/2027/bioinformatics-transparent-ml/pareto_tradeoff.pdf'))
     plt.savefig(plot_path, format='pdf', bbox_inches='tight')
     print(f"Saved Pareto plot to: {plot_path}")
     
-    # Dump LaTeX table rows for easy copy-pasting (with timing)
-    print("\n--- LaTeX Table Output (with Timing) ---")
+    # Dump LaTeX table rows
+    print("\n--- LaTeX Table Output (Models as Rows) ---")
     for m in valid_models:
         row_str = m
         for ds in datasets.keys():
@@ -189,6 +200,10 @@ def run_benchmark():
                 row_str += " & - & - & -"
         row_str += " \\\\"
         print(row_str)
+
+    print("\n--- Summary Results Dict ---")
+    import pprint
+    pprint.pprint(results)
 
 if __name__ == "__main__":
     run_benchmark()
