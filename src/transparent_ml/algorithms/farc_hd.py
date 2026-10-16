@@ -4,7 +4,7 @@ from typing import List, Dict, Any, Tuple
 from sklearn.base import BaseEstimator, ClassifierMixin
 from ..core.base import BaseInterpretableModel
 
-class FarcHDClassifier(BaseInterpretableModel, BaseEstimator, ClassifierMixin):
+class FarcHDClassifier(BaseInterpretableModel):
     """
     Fuzzy Association Rule-based Classification model for High-Dimensional problems (FARC-HD).
     This implementation mimics the KEEL Java architecture natively in Python.

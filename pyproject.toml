@@ -1,7 +1,7 @@
 [project]
 name = "transparent-ml"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Unified Interpretable Machine Learning Ecosystem featuring transparent rule-based classifiers"
 readme = "README.md"
 authors = [
     { name = "nunkesser", email = "robin.nunkesser@hshl.de" }
@@ -12,6 +12,11 @@ dependencies = [
     "numpy>=2.5.3",
     "scikit-learn>=1.9.1",
     "scoredrulesets",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
 ]
 
 [build-system]

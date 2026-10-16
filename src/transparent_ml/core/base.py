@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-class BaseInterpretableModel(BaseEstimator, ClassifierMixin, ABC):
+class BaseInterpretableModel(ClassifierMixin, BaseEstimator, ABC):
     """
     Base class for all models in the transparent-ml ecosystem.
     Mandates the implementation of a standard Scikit-Learn API
