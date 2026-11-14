@@ -207,6 +207,23 @@ wheels = [
 ]
 
 [[package]]
+name = "evolutionary-ml"
+version = "0.1.0"
+source = { editable = "../pypi-evolutionary-ml" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scikit-learn" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "numpy", specifier = ">=1.23" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4" },
+    { name = "scikit-learn", specifier = ">=1.2" },
+]
+provides-extras = ["dev"]
+
+[[package]]
 name = "fonttools"
 version = "4.65.0"
 source = { registry = "https://pypi.org/simple" }
@@ -764,6 +781,7 @@ version = "0.2.0"
 source = { directory = "../pypi-scoredrulesets" }
 dependencies = [
     { name = "catgen" },
+    { name = "evolutionary-ml" },
     { name = "numpy" },
     { name = "scikit-learn" },
 ]
@@ -771,6 +789,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "catgen", specifier = ">=0.1" },
+    { name = "evolutionary-ml", editable = "../pypi-evolutionary-ml" },
     { name = "imodels", marker = "extra == 'hs'", specifier = ">=1.4.0" },
     { name = "jpype1", marker = "extra == 'rulekit'", specifier = ">=1.4" },
     { name = "matplotlib", marker = "extra == 'benchmark'", specifier = ">=3.8" },
@@ -823,7 +842,7 @@ wheels = [
 ]
 
 [[package]]
-name = "transparent-ml"
+name = "transparent-iml"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

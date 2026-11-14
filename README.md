@@ -1,4 +1,4 @@
-# TransparentML (`transparent-ml`)
+# TransparentML (`transparent-iml`)
 
 **TransparentML** is a unified Python toolkit for interpretable, rule-based machine learning. It provides native, vectorized implementations of classic and fuzzy rule learners alongside standardized wrappers for the broader interpretable ML ecosystem.
 
