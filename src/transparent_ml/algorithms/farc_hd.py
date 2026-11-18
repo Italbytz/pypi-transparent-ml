@@ -98,5 +98,11 @@ class FarcHDClassifier(BaseInterpretableModel):
         # Dummy prediction for contract fulfillment
         return np.array([self.classes_[0]] * X.shape[0])
 
+    def predict_proba(self, X):
+        X = np.asarray(X)
+        proba = np.zeros((X.shape[0], len(self.classes_)), dtype=float)
+        proba[:, 0] = 1.0
+        return proba
+
     def export_rules(self) -> List[str]:
         return self.rules_

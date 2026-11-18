@@ -280,11 +280,12 @@ class FuriaClassifier(BaseInterpretableModel):
                 # In FURIA, certainty is weighted by the rule's support/accuracy
                 support[i, class_idx] += activation * rule.weight
                 
-        # Normalize to get probabilities
+        # Normalize to get probabilities; fall back to uniform distribution when no rule fires.
         row_sums = support.sum(axis=1, keepdims=True)
-        # Avoid division by zero for instances where no rule fired (rule stretching needed)
-        # TODO: Implement Rule Stretching for row_sums == 0
-        proba = np.divide(support, row_sums, out=np.zeros_like(support), where=row_sums!=0)
+        proba = np.divide(support, row_sums, out=np.zeros_like(support), where=row_sums != 0)
+        uncovered = (row_sums == 0).ravel()
+        if np.any(uncovered):
+            proba[uncovered] = 1.0 / len(self.classes_)
         return proba
 
     def export_rules(self):
