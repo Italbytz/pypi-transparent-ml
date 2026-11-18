@@ -47,7 +47,7 @@ plt.annotate('FURIA Timeout ($D=50{,}000$)', xy=(50000, 600), xytext=(18000, 420
 
 plt.tight_layout()
 
-# Save to the latex directory
-out_path = '/Users/nunkesser/repos/work/articles/2027/bioinformatics-transparent-ml/materialization_wall.pdf'
+# Save to benchmarks/results
+out_path = 'benchmarks/results/materialization_wall.pdf'
 plt.savefig(out_path, format='pdf', bbox_inches='tight')
 print(f"Plot saved to {out_path}")

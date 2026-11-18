@@ -31,6 +31,3 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "transparent_ml"
-
-[tool.uv.sources]
-scoredrulesets = { path = "../pypi-scoredrulesets" }

@@ -36,6 +36,6 @@ plt.grid(True, linestyle='--', alpha=0.7)
 plt.legend()
 plt.xscale('symlog') # Use log scale because RuleFit is >3000 rules
 
-plot_path = '/Users/nunkesser/repos/work/articles/2027/bioinformatics-transparent-ml/pareto_tradeoff.pdf'
+plot_path = 'benchmarks/results/pareto_tradeoff.pdf'
 plt.savefig(plot_path, format='pdf', bbox_inches='tight')
 print(f"Saved Pareto plot to: {plot_path}")
